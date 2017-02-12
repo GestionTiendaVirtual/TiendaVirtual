@@ -31,8 +31,6 @@ if (isset($_POST['create'])) {
         /* Se agrega la validacion del web service */
         if ($result != false) {
 
-            $_SESSION['carrito'] = [];
-
             /* ==================  Web Service ================ */
             /* Se obtiene la cuenta */
             $accountBusiness = new AccountBusiness();
@@ -50,25 +48,32 @@ if (isset($_POST['create'])) {
             $nameBusiness = "MGASoluciones";
             $numSale = $result;
             $date = date('Y-m-d');
-            $parametros = array('nameClient' => $nameClient, 'numAccount' => $numAccount,
-                'csc' => $csc, 'monto' => $monto, 'nameBusiness' => $nameBusiness,
-                'numSale' => $numSale, 'date' => $date);
+            $email = $client->emailClient;
+
+
+            $parametros = array('nombre' => $nameClient, 'numero_cuenta' => $numAccount,
+                'csc' => $csc, 'monto' => $monto, 'nombre_negocio' => $nameBusiness,
+                'numero_factura' => $numSale, 'fecha' => $date, 'email' => $email);
             /*
              * $cliente->call   Solicita->
              * 1) Nombre de la funcion
              * 2) Parametros
              */
             /* Objeto cliente que hace referencia al webservice */
-            $cliente = new nusoap_client('http://localhost/WebService/Servicio.php', false);
-            $resultBank = $cliente->call("CompraEnLinea", $parametros);
-            /* print_r($resultBank); */
+            $cliente = new nusoap_client('http://localhost/ws/servicio.php', false);
+            $resultBank = $cliente->call("MiFuncion", $parametros);
+            print_r($resultBank); 
 
             /* ================  End Web Service ============== */
+
             if ($resultBank != false) {
+                $_SESSION['carrito'] = [];
                 header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?success=success');
+            }else{
+                header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error1'.$resultBank);
             }
         } else {
-            header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error');
+            header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error2');
         }
     } else {
         header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?errorData=error');
