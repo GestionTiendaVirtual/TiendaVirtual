@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     $("img").click(function () {
         var elem = $(this);
         var src = elem.attr('src');

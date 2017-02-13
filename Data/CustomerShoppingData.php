@@ -1,7 +1,7 @@
 <?php
 
 include_once 'Data.php';
-include_once '../../Domain/client.php';
+include_once '../../Domain/Client.php';
 include_once '../../Domain/Product.php';
 include_once '../../Domain/CustomerShopping.php';
 
@@ -22,7 +22,7 @@ class CustomerShoppingData extends Data {
                 . "cus inner join tbclient cl on cus.idClient = cl.idClient and cus.active != 1;");        
         $array = [];
         while ($row = mysqli_fetch_array($result)) {
-            $currentClient = client::ClientInvoice($row['nameClient'], $row['surname1Client'], $row['surname2Client']);
+            $currentClient = Client::ClientInvoice($row['nameClient'], $row['surname1Client'], $row['surname2Client']);
             $currentCusShopping = new CustomerShopping("", $row['dateSale'], $row['totalSale']);
             $currentCusShopping->setIdSale($row['idSale']);
             $arrayNew = array($currentClient,$currentCusShopping);

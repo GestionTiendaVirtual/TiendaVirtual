@@ -92,32 +92,6 @@
                         </tr>
                         <tr><td><h2>Descripción:</h2></td><td><h4><?php echo $product[0]->getDescription(); ?></h4></td></tr>
                         <tr><td><h2>Características:</h2></td><td><h4><?php echo $product[0]->getCharacteristics(); ?></h4></td></tr>
-                        <tr><td>
-
-                                <?php
-                                include_once '../../Business/Details/detailsBusiness.php';
-                                $detailsBusiness = new detailsBusiness();
-                                $wish = $detailsBusiness->isDesired($_GET["idProduct"], $_SESSION["idUser"]);
-                                ?>
-                                <form id="wish" method="POST" action="../../Business/Details/desireAction.php">
-
-                                    <input type="hidden" id="idProductWish" name="idProductWish" value="<?php echo $_GET['idProduct'] ?>">                    
-                                    <input type="hidden" id="idclientWish" name="idClientWish" value="<?php echo $_SESSION["idUser"] ?>">                    
-                                    <input type="checkbox" name="checkWish" <?php
-                                    if ($wish) {
-                                        echo 'checked="false"';
-                                    }
-                                    ?> disabled/>  <br>
-                                    <input type="submit" name ="change" id="change" value="Agregar al Carrito" >
-                                </form>
-
-                            </td></tr>
-
-                        <tr>
-                            <td>
-                                Calificar: <span id="Estrellas"></span>
-
-                            </td></tr>
                     </table>
                 </div >
                 <div style="position: relative; bottom: 1320px; margin-left: 800px;">
@@ -149,35 +123,4 @@
     ?>
 
 </body>
-
-<script>
-    $('#Estrellas').starrr({
-        rating:<?php echo '' . getCalification() . ''; ?>,
-        change: function (e, valor) {
-            var calificacion = valor;
-            alert(calificacion);
-        }
-
-    });
-
-</script>
-
 </html>
-<?php
-
-function getCalification() {
-    $detail = new detailsBusiness();
-    return $detail->getCalification($_SESSION["idUser"], $_GET['idProduct']);
-}
-
-function insertCalification($value) {
-    include '../../Domain/star.php';
-    $detail = new detailsBusiness();
-    $ranking = new star($_GET['idProduct'], $_SESSION["idUser"], $value);
-    return $detail->insertCalification($ranking);
-}
-?>
-
-
-
-

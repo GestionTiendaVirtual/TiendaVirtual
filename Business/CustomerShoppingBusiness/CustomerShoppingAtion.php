@@ -6,7 +6,7 @@ include_once '../../Domain/CustomerShopping.php';
 /* Web service */
 include '../../lib/libNusoap/nusoap.php';
 include '../Account/AccountBusiness.php';
-include_once '../Client/clientBusiness.php';
+include_once '../Client/ClientBusiness.php';
 
 session_start();
 
