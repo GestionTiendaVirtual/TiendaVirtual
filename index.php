@@ -20,9 +20,6 @@
             if (isset($_SESSION["idUser"])) {
                 ?>
                 <?php
-                include 'Data/Frecuency.php';
-                $frecuency = new Frecuency();
-                $result = $frecuency->createFrecuency();
                 ?>
                
                 <?php

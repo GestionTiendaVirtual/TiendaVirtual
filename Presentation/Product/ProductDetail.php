@@ -33,7 +33,7 @@
             include_once '../../Data/Frecuency.php';
             $idProduct = $_GET["idProduct"];
             $frecuency = new Frecuency();
-            $result = $frecuency->updateView();
+            $result = $frecuency->updateView($idProduct);
             $productBusiness = new ProductBusiness();
             $product = $productBusiness->getProductByID($idProduct);
             $specificationBusiness = new SpecificationproductBusiness();

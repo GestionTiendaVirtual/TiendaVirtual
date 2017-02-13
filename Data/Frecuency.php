@@ -47,7 +47,7 @@ class Frecuency extends Data {
         mysqli_close($conn);
     }
 
-    function updateView() {
+    function updateView($idProduct) {
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
         $query = "select max(idfrecuency) from tbfrecuency";
@@ -56,6 +56,22 @@ class Frecuency extends Data {
         $valor = $row['max(idfrecuency)'];
         $query2 = "update tbfrecuency set viewproduct=viewproduct+1 where idfrecuency=$valor";
         $result2 = mysqli_query($conn, $query2);
+        
+        $query4="select * from tbfrecuencyview where idfrecuency=$valor and idproduct=$idProduct";
+        $result4 = mysqli_query($conn, $query4);
+        $row= mysqli_fetch_array($result4);
+        if (sizeof($row) >= 1) {
+            $query5="update tbfrecuencyview set countview=countview+1 where idfrecuency=$valor and idproduct=$idProduct";
+            $result5 = mysqli_query($conn, $query5);
+	}
+	else{
+            $query3="insert into tbfrecuencyview (idfrecuency,idproduct,countview) values($valor,$idProduct,1)";
+            $result3 = mysqli_query($conn, $query3);  
+	}
+	
+            
+           
+        
         mysqli_close($conn);
     }
 
