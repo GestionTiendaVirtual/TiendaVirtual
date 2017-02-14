@@ -11,7 +11,7 @@
         <a href="./Presentation/Location/DirectionClient.php">Direcciones</a>
         <a href="./Presentation/TypeProduct/typeProductInterface.php">Tipo producto</a>
         <a href="./Presentation/Product/ProductCreate.php">Producto</a>
-        <a href="./Presentation/Client/clientInterface.php">Cliente</a>
+        <a href="./Presentation/Client/ClientRegister.php">Registrarse</a>
         <hr>
         <h1>Iniciar sesión</h1>
         

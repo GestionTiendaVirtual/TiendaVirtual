@@ -113,10 +113,20 @@
                                     ?>
                                 </ul>
                             </li>
-                            <li><a href="../../Presentation/Account/AccountInterface.php">Cuenta</a>
-                            <li><a href="../ShoppingCar/ShoppingCar.php">Carrito compras</a>
-                            <li><a href="../../Business/loginAction.php?logout">Cerrar</a>
+
+                            <li>
+                                <a>Mi Perfil</a>
+                                <ul>
+                                    <li>
+                                        <a href="../../Presentation/Account/AccountInterface.php">Cuenta</a>
+                                        <a href="../../Presentation/Client/ClientUpdate.php">Mis datos</a>
+                                    </li>
+                                </ul>
+
                             </li>
+
+                            <li><a href="../ShoppingCar/ShoppingCar.php">Carrito compras</a></li>
+                            <li><a href="../../Business/loginAction.php?logout">Cerrar</a></li>
                         </ul>
                     </div>
                 </td>
