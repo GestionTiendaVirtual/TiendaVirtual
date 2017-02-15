@@ -13,7 +13,14 @@ $surname2Client = $_POST['surname2'];
 $bornClient = date_create($_POST['born']);
 $sexClient = $_POST['sex'];
 $telephoneClient = $_POST['telephone'];
-$addressClient = $_POST['address'];
+
+$province = $_POST['province'];
+$canton = $_POST['canton'];
+$district = $_POST['district'];
+$otherReviews = $_POST['otherReviews'];
+
+
+$addressClient = $province.";".$canton.";".$district.";".$otherReviews;
 $active = 0;
 
 $client = new Client($idClient, $emailClient, $userClient, $passwordClient, $nameClient,

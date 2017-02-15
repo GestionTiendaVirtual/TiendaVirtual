@@ -153,12 +153,12 @@
 				</tr>
 
 				<!-- Ubicación -->
-				<tr>
+
+				<tr> <!-- Inicio de fila para los select de ubicacion -->
 					<td><b>Ubicación</b></td>
-					
-					<!-- Select para PROVINCIA -->
 					<td>
-						<select id="province" onclick="return getCanton()">
+						<!-- Select para PROVINCIA -->
+						<select id="province" name="province" onclick="return getCanton()">
 							<?php
 								foreach ($listProvince as $temProv) {
 									echo "<option value='". $temProv->getIdProvince() ."'> ".
@@ -166,11 +166,9 @@
 								}
 							?>
 						</select> 
-					</td>
 
-					<!-- Select para CANTON -->
-					<td> 
-						<select id="canton" onclick="getDistrict()">
+						<!-- Select para CANTON -->
+						<select id="canton" name="canton" onclick="getDistrict()">
 							<?php
 								foreach ($listCanton as $temCanton) {
 									echo "<option value='". $temCanton->getIdCanton() ."'> ".
@@ -178,29 +176,36 @@
 								}
 							?>
 						</select>
-					</td>
 
-					<!-- Select para DISTRITO -->
-					<td>
-						<select id="district">
+						<!-- Select para DISTRITO -->
+						<select id="district" name="district">
 							<?php
 								foreach ($listDistrict as $temDistrict) {
 									echo "<option value='". $temDistrict->getIdDistrict() ."'> ".
 										$temDistrict->getNameDistrict() ." </option>";
 								}
 							?>
-						</select> 
+						</select>
 					</td>
-			
+					
 				</tr>
+				<!-- Fin de los select para uicacion -->
+
+				<!-- Otras señas -->
+				<tr>
+					<td></td>
+					<td>
+						<input type="text" name="otherReviews" placeholder="Otras señas">
+					</td>
+				</tr><!-- Fin para otras señas -->
 
 				<!-- btn -->
 				<tr>
 					<td></td>
 					<td><input type="submit" value="insertar"></td>
 				</tr>
-
 			</table>
+
 		</form><!-- Fin del form para insertar -->
 		
 	</body>
