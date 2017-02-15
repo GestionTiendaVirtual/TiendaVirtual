@@ -15,6 +15,7 @@ if (isset($_POST['option']) == 'login') {
             session_start();
             $_SESSION['idUser'] = $result;
             $_SESSION['carrito'] = array();
+            $_SESSION['desired'] = array();
              include '../Data/Frecuency.php';
                 $frecuency = new Frecuency();
                 $result = $frecuency->createFrecuency();

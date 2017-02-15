@@ -13,6 +13,7 @@
 
         <link href="../../CSS/starrr.css" rel=stylesheet/>
         <script src="../../JS/starrr.js"></script>
+        <script src="../../JS/Likeproduct.js" type="text/javascript"></script>
     </head>
     <body>
         <br>
@@ -31,6 +32,7 @@
             include_once '../../Business/Product/ProductBusiness.php';
             include_once '../../Business/SpecificationProduct/SpecificationproductBusiness.php';
             include_once '../../Data/Frecuency.php';
+            include_once '../../Business/LikeProduct/likeProductBusiness.php';
             $idProduct = $_GET["idProduct"];
             $frecuency = new Frecuency();
             $result = $frecuency->updateView($idProduct);
@@ -38,6 +40,8 @@
             $product = $productBusiness->getProductByID($idProduct);
             $specificationBusiness = new SpecificationproductBusiness();
             $specification = $specificationBusiness->getSpecificationProduct($idProduct);
+            $likeBusiness = new likeProductBusiness();
+            $resultLike = $likeBusiness->getLikeProduct($idProduct, $_SESSION["idUser"]);
             ?>
             <div>
                 <center><h1 id="txtName"><?php echo $product[0]->getName(); ?></h1></center>
@@ -98,29 +102,59 @@
                     <table>
                         <tr>
                             <td><h2>Especificaciones:</h2><td></td></td><td><a href="../WallView/Wall.php?idProduct=<?php echo $idProduct; ?>">Ver muro</a></td><br>
-                        <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>
+<!--                        <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>-->
+
+                       
+
+
                         <?php
                         foreach ($specification as $currentSpe) {
                             ?>
                             <tr>
                                 <td><h4><?php echo $currentSpe->getNameSpecification(); ?></h4></td>
-                                <td><h4><?php echo $currentSpe->getValueSpecification(); ?></h4></td></tr>
+                                <td><h4><?php echo $currentSpe->getValueSpecification(); ?></h4></td>
+                            </tr>
                             <?php
                         }
                         ?>
                         </tr>
 
+                        
+                       <?php
+                        if ($resultLike != 1) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <input style="width: 30px; height: 30px;" type="image" src="../../images/noLike.png" id="btnLike" 
+                                       name="btnLike" onclick="likeProduct('<?php echo $idProduct; ?>')"/>
+                                </td>
+                            </tr>    
 
+                            <?php
+                        } else {
+                            ?>
+                            <tr>
+                                <td>
+                                    <input style="width: 30px; height: 30px;" type="image" src="../../images/like.png"/>
+                                </td>
+                            </tr>    
+                            <?php
+                        }
+                        ?>
+                            <tr><td><input type="submit" id="btnDesired" name="btnDesired" value="Agregar deseo"></td>
+                            <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>
+                            </tr>
                     </table>
                     <label id="lblMessage"></label>
+                    
                 </div>
             </div>
             <input type="hidden" id="idProduct" name="idProduct" value="<?php echo $idProduct; ?>"/>
             <input type="hidden" id="txtPrice" name="txtPrice" value="<?php echo $product[0]->getPrice(); ?>"/>
-            <?php
-        }
+        <?php
     }
-    ?>
+}
+?>
 
 </body>
 </html>
