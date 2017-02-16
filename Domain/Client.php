@@ -21,6 +21,7 @@ class Client
 		$surname1Client, $surname2Client, $bornClient, $sexClient, $telephoneClient,
 		$addressClient, $active)
 	{
+		$this->idClient = $idClient;
 		$this->emailClient = $emailClient;
 		$this->userClient = $userClient;
 		$this->passwordClient = $passwordClient;

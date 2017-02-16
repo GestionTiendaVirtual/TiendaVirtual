@@ -7,10 +7,18 @@ include_once '../../Data/ClientData.php';
 class ClientBusiness extends ClientData
 {
 	
-	/* Insertar cliente */
-	public function insertClientBusiness($client)
-	{
+	/*
+	* Insertar cliente
+	*/
+	public function insertClientBusiness($client){
 		return $this->insertClientData($client);
+	}
+
+	/*
+	* Obtener cliente por id
+	*/
+	public function getClientByIdBusiness($idClient){
+		return $this->getClientByIdData($idClient);
 	}
 
 }//Fin de la clase
