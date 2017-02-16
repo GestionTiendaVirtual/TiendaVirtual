@@ -80,6 +80,20 @@
 		</script>
 	    <!-- Fin ubicacion -->
 
+	    <!-- Mensaje recibido -->
+	    <?php
+	    	if(isset($_GET['Error']) && $_GET['Error'] == "Numeric"){
+	    		echo '<h2><b>ERROR!</b> Procura ingresar solo números en
+	    		los campos numéricos</h2>';
+	    	}
+	    	else if(isset($_GET['Error']) && $_GET['Error'] == "Empty"){
+	    		echo '<h2><b>ERROR!</b> Debe ingresar todos los datos.</h2>';
+	    	}
+	    	else if(isset($_GET['Success'])){
+	    		echo '<h2>Se ha realizado con éxito.</h2>';
+	    	}
+	    ?>
+
 	    <!-- Se carga por defecto una ubicacion -->
 	    <?php 
 		    include '../../Business/Location/LocationBusiness.php';
