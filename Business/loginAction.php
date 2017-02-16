@@ -1,6 +1,7 @@
 <?php
 
-include '../Business/ClientLoginBusiness.php';
+include_once '../Business/ClientLoginBusiness.php';
+include_once '../Data/Frecuency.php';
 
 if (isset($_POST['option']) == 'login') {
     $user = $_POST['txtUser'];
@@ -10,15 +11,14 @@ if (isset($_POST['option']) == 'login') {
         $client = array($user, $password);
         $clientBusiness = new ClientLoginBusiness();
         $result = $clientBusiness->isClient($client);
-
+       
         if ($result != -1) {
             session_start();
             $_SESSION['idUser'] = $result;
             $_SESSION['carrito'] = array();
             $_SESSION['desired'] = array();
-             include '../Data/Frecuency.php';
-                $frecuency = new Frecuency();
-                $result = $frecuency->createFrecuency();
+            $frecuency = new Frecuency();
+            $result = $frecuency->createFrecuency();
             header('location: ../Presentation/Modules/ClientView.php');
         } else {
             header('location: ../index.php?errorUser=error');

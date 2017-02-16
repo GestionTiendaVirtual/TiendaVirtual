@@ -1,6 +1,6 @@
 <?php
 
-include_once './Data.php';
+include_once 'Data.php';
 
 /**
  * Description of DesiredProductData
@@ -20,7 +20,7 @@ class DesiredProductData extends Data {
 
         $queryInsertDesired = mysqli_query($conn, "insert into `tbproductdesired` "
                 . "(`iddesired`, `idclient`, `idproduct`,`active`,`dateactive`) values "
-                . "(" . $idDesired . "," . $idUser . ", " . $idProduct. ",'1',".$date.");");
+                . "(" . $idDesired . "," . $idUser . ", " . $idProduct. ",'1','".$date."');");
         mysqli_close($conn);
 
         if ($queryInsertDesired) {
@@ -35,12 +35,21 @@ class DesiredProductData extends Data {
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
 
-        $queryLike = mysqli_query($conn, "select * from tbproductdesired where idclient = ".$idUser." and active = 1;");
-        $rowLike = mysqli_fetch_array($queryLike);
+        $queryProducts = mysqli_query($conn, "select pro.idproduct, pro.nameProduct, pro.brand, pro.model, "
+                . "pro.serie, pro.price from tbproduct pro inner join "
+                . "tbproductdesired prd on pro.idProduct = prd.idproduct where prd.idclient = ".$idUser." and prd.active = 1;");
+        $array = [];
+         while ($rowProduct = mysqli_fetch_array($queryProducts)) {
+            $currentProduct = $rowProduct['idproduct'] .";". $rowProduct['nameProduct'] .
+                    ";". $rowProduct['brand'] .";".$rowProduct['model'] .";".
+                    $rowProduct['serie'].";".$rowProduct['price'];
+
+            array_push($array, $currentProduct);
+        }
         mysqli_close($conn);
 
-        if (sizeof($rowLike) > 0) {
-            return 1;
+        if (sizeof($array) > 0) {
+            return $array;
         } else {
             return 0;
         }
@@ -52,11 +61,11 @@ class DesiredProductData extends Data {
 
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
-        $queryUpdateLike = mysqli_query($conn, "update `tbproductliked` set liked = '0' "
-                . "where idproduct = ".$idProduct." and iduser = ".$idUser." ");
+        $queryUpdateDesired = mysqli_query($conn, "update `tbproductdesired` set active = 0 "
+                . "where idproduct = ".$idProduct." and idclient = ".$idUser.";");
         mysqli_close($conn);
 
-        if ($queryUpdateLike) {
+        if ($queryUpdateDesired) {
             return true;
         } else {
             return false;
