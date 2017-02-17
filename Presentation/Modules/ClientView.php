@@ -71,7 +71,7 @@
         include_once '../../Business/TypeProduct/typeProductBusiness.php';
         require_once '../../Data/Frecuency.php';
         require_once "../../Business/Search/SearchProductBusiness.php";
-
+        
         $productBusiness = new ProductBusiness();
         $typeProduct = new typeProductBusiness();
         $frecuency = new Frecuency();
@@ -125,7 +125,7 @@
 
                             </li>
 
-                            <li><a href="../ShoppingCar/ShoppingCar.php">Carrito compras</a></li>
+                            <li><a href="../ShoppingCar/ShoppingCar.php?option=carrito">Carrito compras</a></li>
                             <li><a href="../../Business/loginAction.php?logout">Cerrar</a></li>
                         </ul>
                     </div>

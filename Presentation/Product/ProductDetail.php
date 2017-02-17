@@ -14,6 +14,7 @@
         <link href="../../CSS/starrr.css" rel=stylesheet/>
         <script src="../../JS/starrr.js"></script>
         <script src="../../JS/Likeproduct.js" type="text/javascript"></script>
+        <script src="../../JS/DesiredProductAdd.js" type="text/javascript"></script>
     </head>
     <body>
         <br>
@@ -21,7 +22,7 @@
         <table>
             <tr>
                 <td><a href="../Modules/ClientView.php?idProduct=<?php echo $_GET["idProduct"]; ?>">Atrás</a></td>
-                <td><a href="../ShoppingCar/ShoppingCar.php">Carrito compras</a></td>
+                <td><a href="../ShoppingCar/ShoppingCar.php?option=carrito">Carrito compras</a></td>
             </tr>
         </table>
     </center>
@@ -141,7 +142,7 @@
                             <?php
                         }
                         ?>
-                            <tr><td><input type="submit" id="btnDesired" name="btnDesired" value="Agregar deseo"></td>
+                            <tr><td><input type="submit" id="btnDesiredAdd" name="btnDesiredAdd" value="Agregar deseo"></td>
                             <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>
                             </tr>
                     </table>
