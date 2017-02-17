@@ -1,6 +1,6 @@
 <?php
 include_once "./AccountBusiness.php";
-include_once "../Client/clientBusiness.php";
+include_once "../Client/ClientBusiness.php";
 
 /* Se obtienen los datos */
 session_start();

@@ -38,7 +38,7 @@ if (isset($_POST['create'])) {
 
             /* Se obtiene el cliente */
             $instClient = new clientBusiness();
-            $client = $instClient->getClientById($idClient);
+            $client = $instClient->getClientByIdBusiness($idClient);
 
             /* Datos a pasar */
             $nameClient = $client->nameClient;
@@ -54,13 +54,17 @@ if (isset($_POST['create'])) {
             $parametros = array('nombre' => $nameClient, 'numero_cuenta' => $numAccount,
                 'csc' => $csc, 'monto' => $monto, 'nombre_negocio' => $nameBusiness,
                 'numero_factura' => $numSale, 'fecha' => $date, 'email' => $email);
+
+           /* foreach ($parametros as $tem) {
+                echo $tem."</br>";
+            }*/
             /*
              * $cliente->call   Solicita->
              * 1) Nombre de la funcion
              * 2) Parametros
              */
             /* Objeto cliente que hace referencia al webservice */
-            $cliente = new nusoap_client('http://localhost/ws/servicio.php', false);
+            $cliente = new nusoap_client('http://localhost/WS/servicio.php', false);
             $resultBank = $cliente->call("MiFuncion", $parametros);
             print_r($resultBank); 
 
