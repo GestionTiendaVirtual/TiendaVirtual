@@ -1,6 +1,8 @@
 <?php
 
 include_once './DesiredProductBusiness.php';
+include_once '../CanceledSales/CanceledSalesBusiness.php';
+include_once '../../Domain/CanceledSales.php';
 session_start();
 
 if(isset($_SESSION['desired'])){
@@ -23,6 +25,11 @@ if(isset($_SESSION['desired'])){
         }
         
     }
+    
+    /* Se registra la eliminacion en la tabla de compras caceladas */    
+    $instCanceledSales = new CanceledSalesBusiness();
+    $canceledSale = new CanceledSales($_SESSION['idUser'],$idProduct);
+    $result = $instCanceledSales->insertCanceledSaleBusiness($canceledSale);
  
        
 }

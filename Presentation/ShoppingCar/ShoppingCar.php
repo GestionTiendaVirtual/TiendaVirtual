@@ -101,6 +101,7 @@
                 <td>
                     <form method="POST" action="../../Business/CustomerShoppingBusiness/CustomerShoppingAtion.php">
                         <input type="hidden" value="create" id="create" name="create">
+                        <input type="hidden" value="<?php echo $option;?>" id="option" name="option">
                         <input type="hidden" value="<?php echo $total; ?>" id="total" name="total">
 
                         <!-- Cuenta -->
