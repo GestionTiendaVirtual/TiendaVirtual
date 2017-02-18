@@ -75,6 +75,33 @@ class ClientData extends Data
         return $result; 
     }
 
+    /*
+    * Valida que no exista un correo o usuario en cliente que coincida con los nuevos datos.
+    * Retorna true si existe y false si no existen coincidencias
+    */
+    public function validateExistsData($client){
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+
+        $query = "select count(idClient) as numresult from tbclient where 
+                (lower(emailClient) = lower('".$client->emailClient."') OR
+                lower(userClient) = lower('".$client->userClient."')) AND 
+                idClient != " . $client->idClient;
+        
+        $result = mysqli_query($conn, $query);
+        mysqli_close($conn);
+
+        $row = mysqli_fetch_array($result);
+        $numresult = $row['numresult'];
+        
+        if($numresult > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }//Fin de la funcion
+
+
 }//FIn de la clase
 
 ?>

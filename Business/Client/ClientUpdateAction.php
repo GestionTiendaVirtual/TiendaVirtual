@@ -40,15 +40,23 @@ $resultNumeric = $instValidations->validateNumeric(array($idClient,$telephoneCli
 
 if($resultEmpty){
 	if($resultNumeric){
+		
+		/*Se crea el objeto de cliente*/
 		$addressClient = $province.";".$canton.";".$district.";".$otherReviews;
-
 		$client = new Client($idClient, $emailClient, $userClient, $passwordClient, 
-							$nameClient, $surname1Client, $surname2Client, $bornClient,
-							$sexClient,	$telephoneClient, $addressClient, $active);
+						$nameClient, $surname1Client, $surname2Client, $bornClient,
+						$sexClient,	$telephoneClient, $addressClient, $active);
 
-		$result = $instClientBusiness->updateClientBusiness($client);
+		//valida si ya existe el correo o el usuario.
+ 		$resultExists= $instClientBusiness->validateExistsBusiness($client);
 
-		header("location: ../../Presentation/Client/ClientUpdate.php?Success=Success");
+		if(!$resultExists){
+			$result = $instClientBusiness->updateClientBusiness($client);
+
+			header("location: ../../Presentation/Client/ClientUpdate.php?Success=Success");
+		}else{
+			header("location: ../../Presentation/Client/ClientUpdate.php?Error=exists");
+		}
 	}else{
 		header("location: ../../Presentation/Client/ClientUpdate.php?Error=Numeric");
 	}

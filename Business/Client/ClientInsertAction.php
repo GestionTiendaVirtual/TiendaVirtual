@@ -26,11 +26,13 @@ $active = 0;
 /*
 * Validaciones
 */
+//Campos vacios
 $resultEmpty =  $instValidations->validateEmpty(array($emailClient, $userClient, 
 				$passwordClient, $nameClient, $surname1Client, $surname2Client,
 				$_POST['born'], $sexClient, $telephoneClient, $province, 
 				$canton, $district, $otherReviews));
 
+//Campos numericos
 $resultNumeric = $instValidations->validateNumeric(array($idClient,$telephoneClient,
 				$province, $canton, $district, $active));
 
@@ -40,15 +42,23 @@ $resultNumeric = $instValidations->validateNumeric(array($idClient,$telephoneCli
 
 if($resultEmpty){
 	if($resultNumeric){
+
+		/*Se crea el objeto de cliente*/
 		$addressClient = $province.";".$canton.";".$district.";".$otherReviews;
-
 		$client = new Client($idClient, $emailClient, $userClient, $passwordClient, 
-							$nameClient, $surname1Client, $surname2Client, $bornClient,
-							$sexClient,	$telephoneClient, $addressClient, $active);
+						$nameClient, $surname1Client, $surname2Client, $bornClient,
+						$sexClient,	$telephoneClient, $addressClient, $active);
 
-		$result = $instClientBusiness->insertClientBusiness($client);
+		//valida si ya existe el correo o el usuario.
+ 		$resultExists= $instClientBusiness->validateExistsBusiness($client);
 
-		header("location: ../../Presentation/Client/ClientRegister.php?Success=Success");
+		if(!$resultExists){
+			$result = $instClientBusiness->insertClientBusiness($client);
+
+			header("location: ../../Presentation/Client/ClientRegister.php?Success=Success");
+		}else{
+			header("location: ../../Presentation/Client/ClientRegister.php?Error=exists");
+		}
 	}else{
 		header("location: ../../Presentation/Client/ClientRegister.php?Error=Numeric");
 	}

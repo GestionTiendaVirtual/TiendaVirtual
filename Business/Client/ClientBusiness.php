@@ -28,6 +28,13 @@ class ClientBusiness extends ClientData
 		return $this->updateClientData($client);
 	}
 
+	/*
+	* Valida si existe un cliente
+	*/
+	public function validateExistsBusiness($client){
+		return $this->validateExistsData($client);
+	}
+
 }//Fin de la clase
 
 
