@@ -18,6 +18,7 @@ function setOption(idSelect, listOption){
 		option.text = (tem.split("?"))[1];
 		x.add(option);
 	}
+	return true;
 }
 
 
@@ -26,8 +27,10 @@ function getCanton(){
     xhttp.onreadystatechange = function() {
     	if (this.readyState == 4 && this.status == 200) {
 
-      		/*Actualiza las opciones del select de canton*/
-      		setOption("canton",this.responseText.split(";"));
+      		/*Actualiza las opciones del select de canton y distrito*/
+      		if(setOption("canton",this.responseText.split(";"))){
+      			getDistrict();
+      		}
     	}
   	};
 	xhttp.open("POST", "../../Business/Location/LocationAction.php", true);

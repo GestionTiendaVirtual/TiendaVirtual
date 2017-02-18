@@ -39,7 +39,6 @@ class ClientData extends Data
 
         $query = "select * from tbclient where idClient = ".$idClient." and active = 1";
         $result = mysqli_query($conn, $query);
-
         mysqli_close($conn);
 
         if($row = mysqli_fetch_array($result)) {
@@ -54,7 +53,27 @@ class ClientData extends Data
         }else{
             return false;
         }
-    }//Fin de la funcion
+    }
+
+    /*
+    * Actualiza un cliente en específico
+    */
+    public function updateClientData($client){
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+
+        $query = "update tbclient set emailClient = '".
+            $client->emailClient."',userClient = '". $client->userClient ."', passwordClient = '".
+            $client->passwordClient ."',nameClient = '". $client->nameClient ."',surname1Client='".
+            $client->surname1Client ."',surname2Client='". $client->surname2Client ."',bornClient='". 
+            date_format($client->bornClient, "Y-m-d") ."',sexClient='". $client->sexClient .
+            "',telephoneClient='". $client->telephoneClient . "',addressclient='".
+            $client->addressClient ."' where idClient = ". $client->idClient;
+        
+        $result = mysqli_query($conn, $query);
+        mysqli_close($conn);
+        return $result; 
+    }
 
 }//FIn de la clase
 

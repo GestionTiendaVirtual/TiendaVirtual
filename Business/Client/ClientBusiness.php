@@ -21,6 +21,13 @@ class ClientBusiness extends ClientData
 		return $this->getClientByIdData($idClient);
 	}
 
+	/*
+	* Actualizar un cliente
+	*/
+	public function updateClientBusiness($client){
+		return $this->updateClientData($client);
+	}
+
 }//Fin de la clase
 
 

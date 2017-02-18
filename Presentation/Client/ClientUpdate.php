@@ -32,6 +32,7 @@
 		    $province = split(";", $client->addressClient)[0];
 		    $canton = split(";", $client->addressClient)[1];
 		    $district = split(";", $client->addressClient)[2];
+		    $otherReviews = split(";", $client->addressClient)[3];
 
 		    /* =========== Ubicación =========== */
 		    include '../../Business/Location/LocationBusiness.php';
@@ -67,7 +68,12 @@
 
 
 
-		<form autocomplete="off" method="POST" action="../../Business/Client/ClientInsertAction.php">
+		<form autocomplete="off" method="POST" action="../../Business/Client/ClientUpdateAction.php">
+			<!-- Input no visibles -->
+			<input type="hidden" name="id" value="<?php echo $client->idClient; ?>">
+			<input type="hidden" name="active" value="<?php echo $client->active; ?>">
+
+
 			<table>
 				<!--Correo-->
 				<tr>
@@ -188,7 +194,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<input type="text" name="otherReviews" value="<?php echo $client->sexClient; ?>">
+						<input type="text" name="otherReviews" value="<?php echo $otherReviews; ?>">
 					</td>
 				</tr><!-- Fin para otras señas -->
 
