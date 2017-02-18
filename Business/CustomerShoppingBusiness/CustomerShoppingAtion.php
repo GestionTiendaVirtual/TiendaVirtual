@@ -12,15 +12,16 @@ session_start();
 
 if (isset($_POST['create'])) {
 
-    if (sizeof($_SESSION['carrito']) > 0 && $_POST['account'] != "" ) {
+    $option = $_POST['option'];
+    if (sizeof($_SESSION[$option]) > 0 && $_POST['account'] != "" ) {
 
         $total = $_POST['total'];
         $idClient = $_SESSION['idUser'];
 
         $products = [];
 
-        for ($i = 0; $i < sizeof($_SESSION['carrito']); $i++) {
-            $product = $_SESSION['carrito'][$i];
+        for ($i = 0; $i < sizeof($_SESSION[$option]); $i++) {
+            $product = $_SESSION[$option][$i];
             $infoProduct = split(";", $product);
             array_push($products, $infoProduct[0]);
         }
@@ -71,7 +72,7 @@ if (isset($_POST['create'])) {
             /* ================  End Web Service ============== */
 
             if ($resultBank != false) {
-                $_SESSION['carrito'] = [];
+                $_SESSION[$option] = [];
                 header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?success=success');
             }else{
                 header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error1'.$resultBank);

@@ -12,14 +12,34 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/CustomerShoppingData.php</file>
-            <file>file:/C:/xampp/htdocs/TiendaVirtual/index.php</file>
-            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingBusiness.php</file>
-            <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/ShoppingCar.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/SpecificationproductData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/ShoppingCar/ShoppingCarAddProduct.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductUpdate.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/DesiredProductAdd.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/LikeProduct/NoLikeProduct.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/LikeProduct/likeProductBusiness.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/DesiredProductData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductBusiness.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/LikeProductData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/loginAction.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/ClientLoginData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/Frecuency.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/ShoppingCar/ShoppingCarDeleteProduct.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/ProductData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/Like.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Product/ProductDetail.php</file>
-            <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/District.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingAtion.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/CustomerShoppingData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/index.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Product/ProductCreate.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingBusiness.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/ShoppingCar.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/Likeproduct.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Modules/ClientView.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/ShoppingCar/ShoppingCar.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductAdd.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/LikeProduct/LikeProduct.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/District.php</file>
         </group>
     </open-files>
 </project-private>
