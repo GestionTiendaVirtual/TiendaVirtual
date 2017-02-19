@@ -37,14 +37,23 @@
 	    		echo '<h2>Se ha realizado con éxito.</h2>';
 	    	}
 	    ?>
-
-	    <!-- Se carga por defecto una ubicacion -->
-	    <?php 
+	    <?php
+	    	/*
+			* Se carga por defecto una ubicacion 
+	    	*/ 
 		    include '../../Business/Location/LocationBusiness.php';
 		    $instLocationBusiness = new LocationBusiness();
 		    $listProvince = $instLocationBusiness->getProvinceBusiness();
 		    $listCanton = $instLocationBusiness->getCantonBusiness($listProvince[0]->getIdProvince());
 		    $listDistrict = $instLocationBusiness->getDistrictBusiness($listCanton[0]->getIdCanton());
+
+
+		    /*
+			* Se cargan todas las preferencias sexuales
+		    */
+		    include_once '../../Business/SexualPreferences/SexualPreferencesBusiness.php';
+		    $instSexualPreferences = new SexualPreferencesBusiness();
+		    $listSexualPreferences = $instSexualPreferences->getAllSexualPreferencesBusiness();
 	    ?>
 
 	</head>
@@ -101,7 +110,17 @@
 				<!-- Sexo -->
 				<tr>
 					<td><b>Sexo</b></td>
-					<td><input type="text" name="sex"> *</td>
+					<td>
+						<select name="sex">
+							<?php
+								foreach ($listSexualPreferences as $temSex) {
+									echo "<option value='". $temSex->idPreference ."'> ".
+										$temSex->namePreference ." </option>";
+								}
+							?>
+						</select> 
+					</td>
+
 				</tr>
 
 				<!-- Teléfono -->

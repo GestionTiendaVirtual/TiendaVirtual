@@ -42,6 +42,13 @@
 		    $listCanton = $instLocationBusiness->getCantonBusiness($province);
 		    $listDistrict = $instLocationBusiness->getDistrictBusiness($canton);
 
+		    /*
+			* Se cargan todas las preferencias sexuales
+		    */
+		    include_once '../../Business/SexualPreferences/SexualPreferencesBusiness.php';
+		    $instSexualPreferences = new SexualPreferencesBusiness();
+		    $listSexualPreferences = $instSexualPreferences->getAllSexualPreferencesBusiness();
+
 	    ?>
 
 	</head>
@@ -120,10 +127,26 @@
 					<td><input type="text" name="born" id="datepicker" value="<?php echo date_format($client->bornClient, "m-d-Y") ?>"> *</td>
 				</tr>
 
-				<!-- Sexo -->
 				<tr>
 					<td><b>Sexo</b></td>
-					<td><input type="text" name="sex" value="<?php echo $client->sexClient; ?>"> *</td>
+					<td>
+						<select name="sex">
+						<?php
+							foreach ($listSexualPreferences as $temSex) {
+								
+								if($temSex->idPreference == $client->sexClient){
+									echo "<option value='". $temSex->idPreference ."' selected> ".
+									$temSex->namePreference ." </option>";
+								}
+								else{
+									echo "<option value='". $temSex->idPreference ."'> ".
+									$temSex->namePreference ." </option>";
+								}								
+							}//Fin del foreach
+						?>
+						</select> 
+					</td>
+
 				</tr>
 
 				<!-- Teléfono -->
