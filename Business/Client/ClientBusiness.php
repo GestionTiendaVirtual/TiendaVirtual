@@ -35,6 +35,13 @@ class ClientBusiness extends ClientData
 		return $this->validateExistsData($client);
 	}
 
+	/*
+	* Obtiene la localizacion de un cliente en especifico.
+	*/
+	public function getLocationBusiness($idClient){
+		return $this->getLocationData($idClient);
+	}
+
 }//Fin de la clase
 
 

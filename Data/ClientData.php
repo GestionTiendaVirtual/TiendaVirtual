@@ -62,6 +62,16 @@ class ClientData extends Data
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
 
+        /*
+        * Se actualiza la ubicacion de las cuentas que le pertenecen al cliente a actualizar
+        */
+        $query = "update tbaccount set direction = '". $client->addressClient .
+                "' where idClient = ". $client->idClient;
+        mysqli_query($conn, $query);
+
+        /*
+        * Se actualiza la informacion del cliente
+        */
         $query = "update tbclient set emailClient = '".
             $client->emailClient."',userClient = '". $client->userClient ."', passwordClient = '".
             $client->passwordClient ."',nameClient = '". $client->nameClient ."',surname1Client='".
@@ -99,6 +109,22 @@ class ClientData extends Data
         }else{
             return false;
         }
+    }//Fin de la funcion
+
+
+    /*
+    * Obtiene de la BD la localizacion de un cliente en especifico.
+    */
+    public function getLocationData($idClient){
+        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+
+        $query = "select addressclient as addressclient from tbclient where idClient = ".$idClient;
+        $result = mysqli_query($conn, $query);
+        mysqli_close($conn);
+
+        $row = mysqli_fetch_array($result);
+        return $row['addressclient'];
     }//Fin de la funcion
 
 
