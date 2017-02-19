@@ -73,15 +73,15 @@ if (isset($_POST['create'])) {
 
             if ($resultBank != false) {
                 $_SESSION[$option] = [];
-                header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?success=success');
+                header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?success=success&option='.$option.'');
             }else{
-                header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error1'.$resultBank);
+                header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error1&option='.$option.'');
             }
         } else {
-            header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error2');
+            header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?error=error2&option='.$option.'');
         }
     } else {
-        header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?errorData=error');
+        header('location: ../../Presentation/ShoppingCar/ShoppingCar.php?errorData=error&option='.$option.'');
     }
 } else if (isset($_POST['optionState'])) {
 
