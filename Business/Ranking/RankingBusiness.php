@@ -11,4 +11,7 @@ class RankingBusiness extends Ranking {
         return $this->calification($idProduct, $value);
         
     }
+    public function average($idProduct){
+        return $this->rankingCalification($idProduct);
+    }
 }

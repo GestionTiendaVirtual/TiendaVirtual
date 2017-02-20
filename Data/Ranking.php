@@ -55,4 +55,25 @@ class Ranking extends Data {
         }
     }
 
+    function rankingCalification($idProduct) {
+        $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
+        $conn->set_charset('utf8');
+        $idProduct;
+
+        $result = mysqli_query($conn, "select count(calification) from tbproductcalification where idproduct=$idProduct");
+        $row = mysqli_fetch_array($result);
+        $valor = $row[0];
+
+
+        $result2 = mysqli_query($conn, "select sum(calification) from tbproductcalification where idproduct=$idProduct");
+        $row2 = mysqli_fetch_array($result2);
+        $valor2 = $row2[0];
+
+
+
+
+        $final = $valor2 / $valor;
+        return $final;
+    }
+
 }

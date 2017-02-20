@@ -110,11 +110,11 @@
                         $show = new RankingBusiness();
                         $save = $show->showBusiness($idProduct);
                         if ($save == 1) {
-                             $valor = $show->markBusiness($idProduct);
+                            $valor = $show->markBusiness($idProduct);
                             if ($valor == 0) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                        <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -126,7 +126,7 @@
                             } elseif ($valor == 1) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                        <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input checked onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -138,7 +138,7 @@
                             } elseif ($valor == 2) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                      <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input checked onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -150,7 +150,7 @@
                             } elseif ($valor == 3) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                        <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -162,7 +162,7 @@
                             } elseif ($valor == 4) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                        <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -174,7 +174,7 @@
                             } elseif ($valor == 5) {
                                 echo '<form action="" class="formulario">
                                     <div class="radio">
-                                        <h2>Ranking</h2>
+                                        <h3>Calificar producto:</h3>
                                             <label>Malo</label>
                                             <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
                                             <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
@@ -184,6 +184,10 @@
                                             <label>Bueno</>
                                     </div>';
                             }
+                            $print = $show->average($idProduct);
+                            echo '<h3>Puntuacion general:'.$print.'</h3>';
+                           
+                            
                         }
                         ?>
 
@@ -238,7 +242,7 @@
     ?>
     <script>
         function update(value) {
-            
+
             window.location = "../../Business/Ranking/updateCalification.php?value=" + value + "&idProduct=" +<?php echo $idProduct ?>;
         }
     </script>         
