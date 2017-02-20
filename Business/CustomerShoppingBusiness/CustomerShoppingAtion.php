@@ -31,7 +31,7 @@ if (isset($_POST['create'])) {
 
         /* Se agrega la validacion del web service */
         if ($result != false) {
-
+ 
             /* ==================  Web Service ================ */
             /* Se obtiene la cuenta */
             $accountBusiness = new AccountBusiness();

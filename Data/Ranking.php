@@ -71,9 +71,11 @@ class Ranking extends Data {
 
 
 
-
-        $final = $valor2 / $valor;
-        return $final;
+        if($valor != 0 && $valor2 != 0){
+            return $final = $valor2 / $valor;
+        }
+        
+        return 0;
     }
 
 }
