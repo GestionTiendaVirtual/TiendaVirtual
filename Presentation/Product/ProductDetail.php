@@ -103,9 +103,89 @@
                     <table>
                         <tr>
                             <td><h2>Especificaciones:</h2><td></td></td><td><a href="../WallView/Wall.php?idProduct=<?php echo $idProduct; ?>">Ver muro</a></td><br>
-<!--                        <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>-->
-
-                       
+        <!--                        <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>-->
+                        <?php
+                        include_once '../../Business/Ranking/RankingBusiness.php';
+                        $idProduct = $_GET["idProduct"];
+                        $show = new RankingBusiness();
+                        $save = $show->showBusiness($idProduct);
+                        if ($save == 1) {
+                             $valor = $show->markBusiness($idProduct);
+                            if ($valor == 0) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            } elseif ($valor == 1) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input checked onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            } elseif ($valor == 2) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input checked onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            } elseif ($valor == 3) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input checked onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            } elseif ($valor == 4) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input checked onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            } elseif ($valor == 5) {
+                                echo '<form action="" class="formulario">
+                                    <div class="radio">
+                                        <h2>Ranking</h2>
+                                            <label>Malo</label>
+                                            <input onclick="update(value);" value="1" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="2" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="3" type="radio" name="mark" id="uno">
+                                            <input onclick="update(value);" value="4" type="radio" name="mark" id="uno">
+                                            <input checked onclick="update(value);" value="5" type="radio" name="mark" id="uno">
+                                            <label>Bueno</>
+                                    </div>';
+                            }
+                        }
+                        ?>
 
 
                         <?php
@@ -120,14 +200,14 @@
                         ?>
                         </tr>
 
-                        
-                       <?php
+
+                        <?php
                         if ($resultLike != 1) {
                             ?>
                             <tr>
                                 <td>
                                     <input style="width: 30px; height: 30px;" type="image" src="../../images/noLike.png" id="btnLike" 
-                                       name="btnLike" onclick="likeProduct('<?php echo $idProduct; ?>')"/>
+                                           name="btnLike" onclick="likeProduct('<?php echo $idProduct; ?>')"/>
                                 </td>
                             </tr>    
 
@@ -142,20 +222,26 @@
                             <?php
                         }
                         ?>
-                            <tr><td><input type="submit" id="btnDesiredAdd" name="btnDesiredAdd" value="Agregar deseo"></td>
+                        <tr><td><input type="submit" id="btnDesiredAdd" name="btnDesiredAdd" value="Agregar deseo"></td>
                             <td><input type="submit" id="btnCar" name="btnCar" value="Agregar carrito" /></td>
-                            </tr>
+                        </tr>
                     </table>
                     <label id="lblMessage"></label>
-                    
+
                 </div>
             </div>
             <input type="hidden" id="idProduct" name="idProduct" value="<?php echo $idProduct; ?>"/>
             <input type="hidden" id="txtPrice" name="txtPrice" value="<?php echo $product[0]->getPrice(); ?>"/>
-        <?php
+            <?php
+        }
     }
-}
-?>
+    ?>
+    <script>
+        function update(value) {
+            
+            window.location = "../../Business/Ranking/updateCalification.php?value=" + value + "&idProduct=" +<?php echo $idProduct ?>;
+        }
+    </script>         
 
 </body>
 </html>
