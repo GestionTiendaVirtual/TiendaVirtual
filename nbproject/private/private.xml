@@ -27,6 +27,7 @@
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/ShoppingCar/ShoppingCarDeleteProduct.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/ProductData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/Like.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/Ranking.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Product/ProductDetail.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingAtion.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/CustomerShoppingData.php</file>
@@ -35,6 +36,7 @@
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingBusiness.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/ShoppingCar.js</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/Likeproduct.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/CustomerShopping.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Modules/ClientView.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/ShoppingCar/ShoppingCar.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductAdd.php</file>

@@ -13,8 +13,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-
+        <link href="../../CSS/zoom.css" rel="stylesheet" type="text/css"/>
         <script>
             $(function () {
                 var typeTermNum = 0;
@@ -71,7 +70,7 @@
         include_once '../../Business/TypeProduct/typeProductBusiness.php';
         require_once '../../Data/Frecuency.php';
         require_once "../../Business/Search/SearchProductBusiness.php";
-        
+
         $productBusiness = new ProductBusiness();
         $typeProduct = new typeProductBusiness();
         $frecuency = new Frecuency();
@@ -101,12 +100,12 @@
                                         ?>
                                         <li><a href="ClientView.php?idTypeProduct=<?php echo $cuurentType->getIdTypeProduct(); ?>">
                                                 <?php echo $cuurentType->getNameTypeProduct(); ?></a>
-                                        <!--<ul>
-                                            <li><a href="">Submenu1</a></li>
-                                            <li><a href="">Submenu2</a></li>
-                                            <li><a href="">Submenu3</a></li>
-                                            <li><a href="">Submenu4</a></li>
-                                        </ul>-->
+                                            <!--<ul>
+                                                <li><a href="">Submenu1</a></li>
+                                                <li><a href="">Submenu2</a></li>
+                                                <li><a href="">Submenu3</a></li>
+                                                <li><a href="">Submenu4</a></li>
+                                            </ul>-->
                                         </li>
                                         <?php
                                     }
@@ -141,7 +140,6 @@
             <th>Marca</th>
             <th>Modelo</th>           
             <th>Precio</th>
-            <th>Ver</th>
             <?php
             if (isset($_GET['idTypeProduct'])) {
                 $products = $productBusiness->getProductsTypeProduct($_GET['idTypeProduct']);
@@ -161,10 +159,9 @@
                     <td><label><?php echo $currentProducts->getBrand(); ?>&emsp;&emsp;&emsp;</label></td>
                     <td><label><?php echo $currentProducts->getModel(); ?>&emsp;&emsp;&emsp;</label></td>
                     <td><label><?php
-            $price = number_format($currentProducts->getPrice());
-            echo '₡ ' . $price
-                ?>&emsp;&emsp;&emsp;</label></td>  
-                    <td><label><a href="../Product/ProductDetail.php?idProduct=<?php echo $currentProducts->getIdProduct(); ?>">Ver</a></label></td>
+                            $price = number_format($currentProducts->getPrice());
+                            echo '₡ ' . $price
+                            ?>&emsp;&emsp;&emsp;</label></td>  
                 </tr>
                 <tr>
                     <?php
@@ -172,12 +169,13 @@
                     foreach ($currentProducts->getPathImages() as $path) {
                         if ($cont < 3) {
                             ?>
-                            <td><img style="width: 100px; height: 100px;"src="<?php echo $path; ?>">&emsp;&emsp;</td>
-                                <?php
+                            <td><a href="../Product/ProductDetail.php?idProduct=<?php echo $currentProducts->getIdProduct(); ?>">
+                                    <img class="zoom"style="width: 100px; height: 100px;"src="<?php echo $path; ?>"></a>&emsp;&emsp;</td>
+                                    <?php
+                                }
+                                $cont++;
                             }
-                            $cont++;
-                        }
-                        ?>
+                            ?>
 
                 </tr>
                 <?php
