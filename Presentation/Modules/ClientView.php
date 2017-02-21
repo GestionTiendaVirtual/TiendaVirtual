@@ -96,12 +96,7 @@
                                         ?>
                                         <li><a href="ClientView.php?idTypeProduct=<?php echo $cuurentType->getIdTypeProduct(); ?>">
                                                 <?php echo $cuurentType->getNameTypeProduct(); ?></a>
-                                            <!--<ul>
-                                                <li><a href="">Submenu1</a></li>
-                                                <li><a href="">Submenu2</a></li>
-                                                <li><a href="">Submenu3</a></li>
-                                                <li><a href="">Submenu4</a></li>
-                                            </ul>-->
+                                         
                                         </li>
                                         <?php
                                     }

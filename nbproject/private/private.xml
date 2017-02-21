@@ -16,15 +16,21 @@
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/ShoppingCar/ShoppingCarAddProduct.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductUpdate.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/DesiredProductAdd.js</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/Product/ProductBusiness.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/LikeProduct/NoLikeProduct.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/LikeProduct/likeProductBusiness.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/DesiredProductData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/DesiredProductBusiness/DesiredProductBusiness.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Product/ProductUpdate.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/Product/ProductAction.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/LikeProductData.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/RecoverPasswordData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/loginAction.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/CSS/zoom.css</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/ClientLoginData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/Frecuency.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/ShoppingCar/ShoppingCarDeleteProduct.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/RecoverPasswordClientBusiness/RecoverPasswordClientBusiness.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/ProductData.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/Like.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Data/Ranking.php</file>
@@ -34,6 +40,7 @@
             <file>file:/C:/xampp/htdocs/TiendaVirtual/index.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Presentation/Product/ProductCreate.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/CustomerShoppingBusiness/CustomerShoppingBusiness.php</file>
+            <file>file:/C:/xampp/htdocs/TiendaVirtual/Business/RecoverPasswordClientBusiness/RecoverPasswordAction.php</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/ShoppingCar.js</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/JS/Likeproduct.js</file>
             <file>file:/C:/xampp/htdocs/TiendaVirtual/Domain/CustomerShopping.php</file>
