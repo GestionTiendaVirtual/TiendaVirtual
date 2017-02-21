@@ -1,8 +1,7 @@
 <?php
 
 include_once 'Data.php';
-require_once '../../phpmailer/PHPMailerAutoload.php';
-
+require_once '../../Resources/PHPMailer/PHPMailerAutoload.php';
 /**
  * Description of RecoverPasswordData
  *
@@ -20,7 +19,22 @@ class RecoverPasswordData extends Data {
         mysqli_close($conn);
         $email = $rowEmail[0];
         if (strlen($email)) {
-            
+                
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Username = "gymcaobacr@gmail.com";
+            $mail->Password = "gymcaoba12345";            
+            $mail->setFrom('gymcaobacr@gmail.com', 'MGA Soluciones');
+            $mail->addAddress('michael.melendezm@gmail.com', 'MGA Store');
+            $mail->Subject = 'Solicitud de contraseña';
+            $message = "Su contraseña temporal es: ";
+            $mail->msgHTML($message);
+            $exito = $mail->send();
+
             if ($exito) {
                 return true;
             } else {
