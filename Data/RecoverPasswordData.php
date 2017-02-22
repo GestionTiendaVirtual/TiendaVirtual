@@ -15,10 +15,11 @@ class RecoverPasswordData extends Data {
         $conn = mysqli_connect($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
 
-        $queryEmail = mysqli_query($conn, "select emailclient from tbclient where emailclient = '" . $email . "'");
-        $rowEmail = mysqli_fetch_array($queryEmail);
+        $queryEmail = mysqli_query($conn, "select emailclient, nameclient, "
+                . "passwordclient from tbclient where emailclient = '" . $email . "'");
+        $row = mysqli_fetch_array($queryEmail);
         mysqli_close($conn);
-        $email = $rowEmail[0];
+        $email = $row['emailclient'];
         if (strlen($email)) {
 
             $mail = new PHPMailer();
@@ -32,9 +33,9 @@ class RecoverPasswordData extends Data {
             $mail->Username = "mgasoluciones17@gmail.com";
             $mail->Password = "adminMGA";
             $mail->setFrom('mgasoluciones17@gmail.com', 'MGA Store');
-            $mail->addAddress('michael.melendezm@gmail.com', 'Michael');
+            $mail->addAddress($email,$row['nameclient']);
             $mail->Subject = 'Solicitud recuperar contraseña';
-            $message = "Su contraseña temporal es ";
+            $message = "Su contraseña temporal es ".$row['passwordclient'];
             $mail->msgHTML($message);
             $success = $mail->send();
 
