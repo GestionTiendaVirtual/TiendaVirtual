@@ -65,11 +65,11 @@
                             <table>                                
                                 <tr>
                                     <td>Email:</td>
-                                    <td>&emsp;&emsp;<input type="email" id="txtEmail" name="txtEmail"/></td>
+                                    <td>&emsp;&emsp;<input style="width: 400px;"type="email" id="txtEmail" name="txtEmail"/></td>
                                 </tr>
                                 
                             </table><br>
-                            <input class="btn success" type="submit"/>
+                            <input class="btn btn-primary" type="submit" id="btnSend"/>
                         </form>
                     </div>
                     <div class="modal-footer">

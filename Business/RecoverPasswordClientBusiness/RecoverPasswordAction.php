@@ -1,18 +1,21 @@
 <?php
+
 include_once './RecoverPasswordClientBusiness.php';
 
 
-if($_POST['txtEmail']){
-    
+if (isset($_POST['txtEmail'])) {
+
     $email = $_POST['txtEmail'];
-    $recoverPassword = new RecoverPasswordClientBusiness();
-    $result = $recoverPassword->recoverPassword($email);
-    
-    if($result){
-        header('location: ../../index.php?successEmail=success');
-    }else{
-        header('location: ../../index.php?error=errorData');
+    if (strlen($email) > 3) {
+        $recoverPassword = new RecoverPasswordClientBusiness();
+        $result = $recoverPassword->recoverPassword($email);
+
+        if ($result) {
+            header('location:../../index.php?successEmail=success');
+        } else {
+            header('location:../../index.php?errorData=errorData');
+        }
+    } else {
+        header('location:../../index.php?errorData=errorData');
     }
-    
-    
 }
