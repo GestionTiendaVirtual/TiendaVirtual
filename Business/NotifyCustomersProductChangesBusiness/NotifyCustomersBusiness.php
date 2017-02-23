@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../Data/SendInformationModificationData.php';
+include_once './Data/SendInformationModificationData.php';
 
 /**
  * Description of NotifyCustomersBusiness
@@ -17,7 +17,7 @@ class NotifyCustomersBusiness {
     }
     
     public function sendEmailClient(){
-        $this->sendEmailClient();
+        $this->sendInformation->sendEmailClient();
     }
     
 }

@@ -1,6 +1,6 @@
 <?php
-require_once '../../Resources/PHPMailer/PHPMailerAutoload.php';
-include_once './Data.php';
+require_once './Resources/PHPMailer/PHPMailerAutoload.php';
+include_once 'Data.php';
 
 /**
  * Description of SendInformationModificationData
