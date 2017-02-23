@@ -65,9 +65,9 @@ class SendInformationModificationData extends Data {
 
                 $messageSend .= " te invitamos a que revise la actualización del producto.";
                 
-                $resultUpdateModi = mysqli_query($conn, "update tbproductmodifications set"
+                mysqli_query($conn, "update tbproductmodifications set"
                         . " active = 0 where idmodification = ".$idModification);
-                
+                mysqli_close($conn);
                 $mail = new PHPMailer();
                 $mail->isSMTP();
                 $mail->SMTPDebug = 2;
