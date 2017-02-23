@@ -2,7 +2,10 @@
 
 include_once '../../Domain/Product.php';
 include_once '../../Domain/SpecificationProduct.php';
+include_once '../../Domain/ModificationProduct.php';
 include_once './ProductBusiness.php';
+include_once '../ProductPointstBusiness/ProductPointsBusiness.php';
+include_once '../ModificationsProduct/ModificationsProductBusiness.php';
 
 if (isset($_POST['optionCreate'])) {
 
@@ -70,9 +73,15 @@ if (isset($_POST['optionCreate'])) {
         $product->setTypeProduct($typeProduct);
         $productBusiness = new ProductBusiness();
         $result = $productBusiness->insertProduct($product, $arrayImages, $arraySpecifications);
-        echo $result;
-        if ($result == true) {
-            header('location: ../../Presentation/Product/ProductCreate.php?success=success');
+        
+        if ($result != false) {
+            $productPoints = new ProductPointsBusiness();
+            $resultPoints = $productPoints->setProductPoints($result);
+            if($resultPoints){
+                header('location: ../../Presentation/Product/ProductCreate.php?success=success');
+            }else{
+                header('location: ../../Presentation/Product/ProductCreate.php?errorInsert=errorInsert');
+            }
         } else {
             header('location: ../../Presentation/Product/ProductCreate.php?errorInsert=errorInsert');
         }
@@ -93,6 +102,17 @@ if (isset($_POST['optionCreate'])) {
 
     if (strlen($brand) >= 2 && strlen($model) >= 2 && is_numeric($price) && strlen($description) >= 2 && strlen($serie) > 2 && strlen($characteristics) > 2) {
 
+        //----------------------Registro de modificaciones-------------------//
+        $productModification = new ModificationProduct();
+        $productModification->setIdProduct($idProduct);
+        $productModification->setNameProduct($name);
+        $productModification->setDescriptionProduct($description);
+        $productModification->setCharacteristicsProduct($characteristics);
+        $productModification->setPriceProduct($price);        
+        $modificationBusiness = new ModificationsProductBusiness();
+        $resultModification = $modificationBusiness->setBasicAttributes($productModification);    
+             
+        //----------------------------------------------------------------------       
         $product = new Product($brand, $model, $price, "", $description, $name, $characteristics, $serie);
         $product->setIdProduct($idProduct);
         $productBusiness = new ProductBusiness();
@@ -176,6 +196,12 @@ if (isset($_POST['optionCreate'])) {
         }
     }
     if ($flag == true) {
+        
+        //------------------Registro de modificaciones--------------------------
+        $modificationBusiness = new ModificationsProductBusiness();
+        $resultModification = $modificationBusiness->setAttributeImage($idProduct);
+        
+        //----------------------------------------------------------------------
         $product = new ProductBusiness();
         $result = $product->insertImageProduct($idProduct, $arrayImages);
         if ($result == true) {
@@ -187,7 +213,7 @@ if (isset($_POST['optionCreate'])) {
 } else if (isset($_POST['optionColor'])) {
     $idProduct = $_POST['idProduct'];
     $color = $_POST['color'];
-
+    
     $productBusiness = new ProductBusiness();
     $result = $productBusiness->deleteColorProduct($idProduct, $color);
     if ($result == true) {
@@ -199,6 +225,12 @@ if (isset($_POST['optionCreate'])) {
 
     $colors = $_POST['colors'];
     $idProduct = $_POST['idProduct'];
+    
+    //--------------------------Registro de modificaciones---------------------
+    $modificationBusiness = new ModificationsProductBusiness();
+    $resultModification = $modificationBusiness->setAttributeColor($idProduct);
+    //-------------------------------------------------------------------------
+
 
     $productBusiness = new ProductBusiness();
     $result = $productBusiness->insertColorProduct($idProduct, $colors);

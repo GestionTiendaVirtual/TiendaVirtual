@@ -81,9 +81,9 @@ class ProductData extends Data {
 
         if ($queryInsert == true && $queryInsertImages == true &&
                 $queryInsertSpe == true && $queryColor == true) {
-            return true;
+            return $idProduct;
         } else {
-            return $arraySpecifications;
+            return false;
         }
     }
 
@@ -327,6 +327,6 @@ class ProductData extends Data {
         }
         return $array;
     }
-
+    
 //fin función getTypeProducts
 }

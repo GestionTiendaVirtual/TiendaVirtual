@@ -15,9 +15,14 @@
         <a href="./Presentation/Location/DirectionClient.php">Direcciones</a>
         <a href="./Presentation/TypeProduct/typeProductInterface.php">Tipo producto</a>
         <a href="./Presentation/Product/ProductCreate.php">Producto</a>
-        <a href="./Presentation/Client/ClientRegister.php">Registrarse</a>
+        
         <hr>
         <h1>Iniciar sesión</h1>
+        <?php 
+            include_once './Business/NotifyCustomersProductChangesBusiness/NotifyCustomersBusiness.php';
+            $sendEmailClient = new NotifyCustomersBusiness();
+            $resultEmail = $sendEmailClient->sendEmailClient();    
+        ?>
 
         <?php
         if (@session_start() == true) {
@@ -49,6 +54,7 @@
 
         <!-- Trigger the modal with a button -->
         <button style="border: none;"type="button" data-toggle="modal" data-target="#myModal">¿Olvidó su contraseña?</button>
+        <a href="./Presentation/Client/ClientRegister.php">Registrarse</a>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">

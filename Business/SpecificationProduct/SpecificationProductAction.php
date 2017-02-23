@@ -2,6 +2,7 @@
 
 include_once '../../Domain/SpecificationProduct.php';
 include_once './SpecificationproductBusiness.php';
+include_once '../ModificationsProduct/ModificationsProductBusiness.php';
 
 if(isset($_POST['optionCreateSpe'])){
     
@@ -18,6 +19,11 @@ if(isset($_POST['optionCreateSpe'])){
         }
     }
     
+    //-------------------Registro de modificaciones-----------------------------
+    $modificationBusiness = new ModificationsProductBusiness();
+    $resultModification = $modificationBusiness->setAttributeSpecification($idProduct);   
+    //-----------------------------------------------------------------------------
+    
     $specificationBusiness = new SpecificationproductBusiness();
     $result = $specificationBusiness->insertSpecificationProduct($arraySpecifications, $idProduct);
     
@@ -33,6 +39,11 @@ if(isset($_POST['optionCreateSpe'])){
     $cont = $_POST['cont'];
     $idProduct = $_POST['idProduct'];
 
+    //-------------------Registro de modificaciones-----------------------------
+    $modificationBusiness = new ModificationsProductBusiness();
+    $resultModification = $modificationBusiness->setAttributeSpecification($idProduct);   
+    //-----------------------------------------------------------------------------
+    
     for ($i = 0; $i < $cont; $i++) {
 
         $nameSpecification = $_POST{'txtNameSpe' . $i};
