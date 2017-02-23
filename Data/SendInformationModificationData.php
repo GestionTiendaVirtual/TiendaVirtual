@@ -1,4 +1,5 @@
 <?php
+
 require_once './Resources/PHPMailer/PHPMailerAutoload.php';
 include_once 'Data.php';
 
@@ -18,7 +19,7 @@ class SendInformationModificationData extends Data {
                 . "des on cli.idClient = des.idclient inner join tbproductmodifications modi on"
                 . " modi.idproduct = des.idproduct inner join tbproduct pro on pro.idProduct = des.idproduct"
                 . " where des.active = 1 and modi.active = 1");
-
+        $idModification = "";
         while ($row = mysqli_fetch_array($result)) {
 
             $nameClient = $row['nameClient'];
@@ -37,10 +38,16 @@ class SendInformationModificationData extends Data {
             $messageSend = "El producto " . $nameProductOrigin . " " . $brandProduct . " " . $modelProduct . " "
                     . "ha modificacdo su respectiva información: ";
 
+            $idAfther = 0;
+            $idCurent = 0;
             while ($rowModi = mysqli_fetch_array($resultInfoProduct)) {
-                
-                $idModification = $rowModi['idmodification'];
-                
+
+                $idCurent = $rowModi['idmodification'];
+                if ($idCurent != $idAfther) {
+                    $idModification .= $idCurent . ';';
+                    $idAfther = $idCurent;
+                }
+
                 if ($rowModi['nameproduct'] != '0') {
                     $messageSend .= " Nombre: " . $rowModi['nameproduct'];
                 }
@@ -64,14 +71,10 @@ class SendInformationModificationData extends Data {
                 }
 
                 $messageSend .= " te invitamos a que revise la actualización del producto.";
-                
-                mysqli_query($conn, "update tbproductmodifications set"
-                        . " active = 0 where idmodification = ".$idModification);
-                mysqli_close($conn);
+
+
                 $mail = new PHPMailer();
                 $mail->isSMTP();
-                $mail->SMTPDebug = 2;
-                $mail->Debugoutput = 'html';
                 $mail->Host = 'smtp.gmail.com';
                 $mail->Port = 587;
                 $mail->SMTPSecure = 'tls';
@@ -79,13 +82,24 @@ class SendInformationModificationData extends Data {
                 $mail->Username = "mgasoluciones17@gmail.com";
                 $mail->Password = "adminMGA";
                 $mail->setFrom('mgasoluciones17@gmail.com', 'MGA Store');
-                $mail->addAddress($emailClient,$nameClient);
-                $mail->Subject = 'El producto '.$nameProductOrigin.' tuvo algunas modificaciones';
+                $mail->addAddress($emailClient, $nameClient);
+                $mail->Subject = 'El producto ' . $nameProductOrigin . ' tuvo algunas modificaciones';
                 $mail->msgHTML($messageSend);
                 $mail->send();
-                
+
+                $messageSend = "El producto " . $nameProductOrigin . " " . $brandProduct . " " . $modelProduct . " "
+                        . "ha modificacdo su respectiva información: ";
             }
         }
+
+        $ids = split(";", $idModification);
+        for ($i = 0; $i < sizeof($ids); $i++) {
+            if ($ids[$i] != "") {
+                mysqli_query($conn, "update tbproductmodifications set"
+                        . " active = 0 where idmodification = " . $ids[$i]);
+            }
+        }
+        mysqli_close($conn);
     }
 
 }
