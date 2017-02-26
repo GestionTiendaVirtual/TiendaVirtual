@@ -30,7 +30,7 @@ if (isset($_POST['create'])) {
         $result = $customerBusiness->insertCustomerInvoice($customerShopping, $products);
 
         /* Se agrega la validacion del web service */
-        if ($result != false) {
+        if ($result[0] != false) {
  
             /* ==================  Web Service ================ */
             /* Se obtiene la cuenta */
@@ -47,7 +47,7 @@ if (isset($_POST['create'])) {
             $csc = $myAccount->CSC;
             $monto = $total;
             $nameBusiness = "MGASoluciones";
-            $numSale = $result;
+            $numSale = $result[0];
             $date = date('Y-m-d');
             $email = $client->emailClient;
 
@@ -70,6 +70,11 @@ if (isset($_POST['create'])) {
             print_r($resultBank); 
 
             /* ================  End Web Service ============== */
+            
+            //Puntos cliente 
+            $points = $result[1];
+            $resultPoints = $instClient->setPointsClient($idClient, $points);
+            
 
             if ($resultBank != false) {
                 $_SESSION[$option] = [];
