@@ -20,7 +20,7 @@ class CustomerShoppingBusiness {
     }
     
     public function insertCustomerInvoice($customerShopping,$products){
-        return $this->customerShoppingDate->insertCustomerInvoice($customerShopping,$products);
+        return $this->customerShoppingDate->insertCustomerInvoiceData($customerShopping,$products);
     }
     public function cancelInvoice($id){
         return $this->customerShoppingDate->cancelInvoice($id);

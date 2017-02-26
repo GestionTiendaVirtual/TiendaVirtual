@@ -43,7 +43,7 @@ class ClientBusiness extends ClientData
 	}
         
         public function setPointsClient($idClient, $points){
-            return $this->setPointsClient($idClient, $points);
+            return $this->setPointsClientData($idClient, $points);
         }
 
 }//Fin de la clase

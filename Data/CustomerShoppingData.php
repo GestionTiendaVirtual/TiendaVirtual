@@ -57,7 +57,7 @@ class CustomerShoppingData extends Data {
         return $array;
     }
 
-    function insertCustomerInvoice($customerShopping, $products) {
+    function insertCustomerInvoiceData($customerShopping, $products) {
 
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');

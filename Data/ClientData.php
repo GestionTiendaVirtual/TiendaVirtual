@@ -129,11 +129,11 @@ class ClientData extends Data
         return $row['addressclient'];
     }//Fin de la funcion
 
-    public function setPointsClient($idClient, $points){
+    public function setPointsClientData($idClient, $points){
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
 
-        $query = "update tbclient set points = ".$points." where idclient = ".$idClient;
+        $query = "update tbclient set points = (points + ".$points.") where idclient = ".$idClient;
         $result = mysqli_query($conn, $query);
         mysqli_close($conn);
         
