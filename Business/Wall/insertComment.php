@@ -11,7 +11,6 @@ $comment = $_POST['comment'];
 $idProduct = $_POST['idProduct'];
 session_start();
 $idClient = $_SESSION["idUser"];
-echo $idClient;
 $wall = new WallBusiness();
 $result = $wall->insertCommentBusiness($idProduct,$comment,$idClient);
 header("location: ../../Presentation/WallView/Wall.php?idProduct=".$idProduct);

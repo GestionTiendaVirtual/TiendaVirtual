@@ -12,7 +12,7 @@ class WallBusiness extends WallData{
 		return $this->insertComment($idProduct,$comment,$idClient);
 	}
 	public function getStateBusiness($idClient,$idComment){
-		return $this->getState($idClient,$idComment);
+		return $this->getStateData($idClient,$idComment);
 	}
 
 	public function updateLIkeBusiness($idComment,$user){

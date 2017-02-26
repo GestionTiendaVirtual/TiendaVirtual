@@ -1,18 +1,24 @@
 <?php 
-include_once 'Data.php';
 include_once '../../Domain/Comment.php';
 include_once '../../Domain/Like.php';
-class WallData extends Data {
+
+
+class WallData {
+    public $bd;
+
+    public function WallData(){
+        $connection = new Mongo();
+        $this->bd = $connection->Comment;
+    } 
 
 	function getAllComments($idTypeProduct){
-		$conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $query = "select * from tbcomment where idproduct = $idTypeProduct";
-        $result = mysqli_query($conn, $query);
-        mysqli_close($conn);
+        $collection = $this->bd->tbComment;
+        $where = array('idProduct' => intval($idTypeProduct));
+        $cursor = $collection->find($where);
         $array = [];
-        while ($row = mysqli_fetch_array($result)) {
-            $comment = new  Comment($row['idComment'], $row['idProduct'], $row['commentProduct']);
+        foreach ( $cursor as $row)
+        {
+            $comment = new  Comment($row['_id'], $row['idProduct'], $row['commentProduct']);
             array_push($array, $comment);
         }
         return $array;
@@ -20,59 +26,60 @@ class WallData extends Data {
 
 
 	function insertComment($idProduct,$commentProduct,$idClient){
-        echo $commentProduct;
-        echo $idProduct;
-        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $query= "select max(idcomment) from tbcomment";
-        $result = mysqli_query($conn, $query);
-        $row = $result->fetch_assoc();
-        $valor= $row['max(idcomment)']+1;
-        $date= date('Y-m-d');
-        $query2="insert into tbcomment values($valor,$idProduct,'$commentProduct',$idClient,'$date')";
-        $state="";
-        $query3="insert into tblike (iduser,state,idcomment) values($idClient,'$state',$valor)";
-        $result3 = mysqli_query($conn, $query3);
-        $result2 = mysqli_query($conn, $query2);
-        mysqli_close($conn);
 
-	
+        /*Se incerta en la coleccion de comentarios*/
+        $collection = $this->bd->tbComment;
+        $commentTem = array('idProduct' => intval($idProduct), 'commentProduct' => $commentProduct,
+                        'idClient' => intval($idClient), 'date' => date('Y-m-d'));
+        $collection->insert($commentTem);
+
+
+        /* Se incerta en la coleccion de like*/
+        $collectionLike = $this->bd->tbLike;
+        $collectionLike->insert(array('idClient' => intval($idClient), 'state' => '', 
+                                'idComment' => (string)$commentTem['_id']));
 
 	}
-    function getState($idClient,$idComment){ 
-        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $query= "select state from tblike where iduser=$idClient and idcomment=$idComment";
-        $result = mysqli_query($conn, $query);
-        $data=mysqli_fetch_all($result);
-        return $data;
+
+    function getStateData($idClient,$idComment){
+
+        $collection = $this->bd->tbLike;
+        $where = array('idClient' => intval($idClient) , 'idComment' => (string)$idComment);
+        $cursor = $collection->find($where);
+        $array = [];
+        foreach ( $cursor as $row)
+        {
+            array_push($array, $row['state']);
+        }
+        return $array;
     }
 
      function updateLIke($idComment,$user){ 
-        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $query= "update tblike set state='checked' where idcomment=$idComment and iduser=$user";
-        $result = mysqli_query($conn, $query);
-        mysqli_close($conn);
+        $collection = $this->bd->tbLike;
+        $collection->update(
+            array("idComment" =>  (string)$idComment, "idClient" => intval($user)),
+            array('$set' => array('state' => 'checked')),
+            array("multiple" => true)
+        );
+
     }
 
     function updateLIkeChecked($idComment,$user){ 
-        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $query= "update tblike set state='' where idcomment=$idComment and iduser=$user";
-        $result = mysqli_query($conn, $query);
-        mysqli_close($conn);
+        $collection = $this->bd->tbLike;
+        $collection->update(
+            array("idComment" =>  (string)$idComment, "idClient" => intval($user)),
+            array('$set' => array('state' => '')),
+            array("multiple" => true)
+        );
     }
 
 
 
     function insertNewLIke($idComment,$idClient){
-        $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
-        $conn->set_charset('utf8');
-        $state="checked";
-        $query3="insert into tblike (iduser,state,idcomment) values($idClient,'$state',$idComment)";
-        $result3 = mysqli_query($conn, $query3);
-        mysqli_close($conn);
+        /* Se incerta en la coleccion de like*/
+        $collectionLike = $this->bd->tbLike;
+        $collectionLike->insert(array('idClient' => intval($idClient), 'state' => 'checked', 
+                        'idComment' => (string)$idComment));
 
     }
 }
