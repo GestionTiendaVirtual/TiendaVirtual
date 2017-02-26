@@ -22,7 +22,7 @@ class ClientData extends Data
         	$client->userClient ."','". $client->passwordClient ."','".	$client->nameClient ."','".
         	$client->surname1Client ."','".	$client->surname2Client ."','". 
         	date_format($client->bornClient, "Y-m-d") ."','". $client->sexClient . "','".
-            $client->telephoneClient . "','". $client->addressClient ."',1)";
+            $client->telephoneClient . "','". $client->addressClient ."',1, 0)";
         
         $result = mysqli_query($conn, $query);
         mysqli_close($conn);
