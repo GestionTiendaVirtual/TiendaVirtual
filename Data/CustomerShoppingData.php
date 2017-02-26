@@ -74,14 +74,21 @@ class CustomerShoppingData extends Data {
             $resultID = mysqli_query($conn, "SELECT max(idSale) FROM tbconcretesales ");
             $row = mysqli_fetch_array($resultID);
             $id = $row[0] + 1;
+            $pointsClient = 0;
             for ($i = 0; $i < sizeof($products); $i++) {
                 $queryInsert = mysqli_query($conn, "insert into tbconcretesales values "
                         . "(" . $id . "," . $customerShopping->getIdClient() . "," .
                         $products[$i] . " , " . $idInvoice . ");");
+                
+                $resultGetPoints = mysqli_query($conn, "select productpoints from tbproductpoints"
+                        . " where idproduct = ".$products[$i]);
+                
+                $rowPoint = mysqli_fetch_array($resultGetPoints); 
+                $pointsClient += $rowPoint['productpoints'];                
                 $id++;
             }
-
-            return $idInvoice;
+            $array = array($idInvoice,$pointsClient);
+            return $array;
         } else {
             return false;
         }
