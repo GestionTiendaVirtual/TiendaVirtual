@@ -1,10 +1,9 @@
 <?php 
-include_once 'Data.php';
 include_once '../../Domain/Comment.php';
 include_once '../../Domain/Like.php';
 
 
-class WallData extends Data {
+class WallData {
     public $bd;
 
     public function WallData(){
