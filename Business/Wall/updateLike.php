@@ -8,6 +8,7 @@ $wall = new WallBusiness();
 $result = $wall->getStateBusiness($user,$id);
 $size=count($result);
 echo $size;
+echo $id;
 
 if($size==1){
 	echo 'entre';

@@ -40,7 +40,7 @@ if (isset($_GET['idProduct'])) {
             $size=count($resultado);
             if($size==1){
                 foreach ($resultado as $value) {
-                    $state=$value[0];
+                    $state=$value;
                  }
             }
             else{
