@@ -1,6 +1,6 @@
 <?php
 
-include_once './Data.php';
+include_once 'Data.php';
 
 /**
  * Description of ProductPointsData

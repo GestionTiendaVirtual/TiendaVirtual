@@ -29,7 +29,7 @@ if (isset($_POST['optionCreate'])) {
 
         $fileImage = 'fileImage' . $i;
         if ($_FILES[$fileImage]["error"] > 0) {
-            header('location: ../../Presentation/Product/ProductCreate.php?error=errorData');
+            header('location: ../../Presentation/Product/ProductCreate.php?error=errorData1');
         } else {
 
             $allowed = array("image/jpg", "image/jpeg", "image/gif", "image/png");
@@ -86,7 +86,7 @@ if (isset($_POST['optionCreate'])) {
             header('location: ../../Presentation/Product/ProductCreate.php?errorInsert=errorInsert');
         }
     } else {
-        header('location: ../../Presentation/Product/ProductCreate.php?error=errorData');
+        header('location: ../../Presentation/Product/ProductCreate.php?error=errorData2');
     }
 } else if (isset($_POST['optionUpdate'])) {
     $idProduct = $_POST['idProduct'];
