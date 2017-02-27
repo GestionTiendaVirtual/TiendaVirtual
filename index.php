@@ -21,7 +21,11 @@
         <?php 
             include_once './Business/NotifyCustomersProductChangesBusiness/NotifyCustomersBusiness.php';
             $sendEmailClient = new NotifyCustomersBusiness();
-            $resultEmail = $sendEmailClient->sendEmailClient();    
+            $resultEmail = $sendEmailClient->sendEmailClient();  
+
+            include_once './Business/EvaluationWallBusiness/SendRecommendationClient.php';
+            $evaluationBusiness = new SendRecommendationClient();
+            $resultSend = $evaluationBusiness->sendRecommendation();  
         ?>
 
         <?php
@@ -75,7 +79,7 @@
                                 </tr>
                                 
                             </table><br>
-                            <input class="btn btn-primary" type="submit" id="btnSend"/>
+                            <input class="btn btn-primary" type="submit" id="btnSend" value = "Enviar"/>
                         </form>
                     </div>
                     <div class="modal-footer">

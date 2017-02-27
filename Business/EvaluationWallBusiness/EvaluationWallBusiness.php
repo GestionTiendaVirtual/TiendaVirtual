@@ -1,11 +1,16 @@
 <?php 
 include_once "../../Data/EvaluationWallData.php";
+include_once "../../Data/EvaluationWallClientData.php";
 
 class EvaluationWallBusiness extends EvaluationWallData {
 
 	public function insertEvaluationWallBusiness($idProduct,$comment,$idClient){
 		/*Se evalua primero el comentario*/
 		$result = $this->evaluate($comment);
+
+		$instClient = new EvaluationWallClientData();
+
+		$instClient->insertEvaluationClientData($idProduct,$result,$idClient);
 
 		return $this->insertEvaluationGeneralData($idProduct,$result,$idClient);
 	}
@@ -23,7 +28,7 @@ class EvaluationWallBusiness extends EvaluationWallData {
 			 'metrics' => array( array('barato',0), array('caro',0))
 			),
 			array('criterion' => 'tamaño',
-			 'metrics' => array( array('grande',0), array('pequeño',0))
+			 'metrics' => array( array('grande',0), array('pequeno',0))
 			),
 			array('criterion' => 'calidad',
 			 'metrics' => array( array('bueno',0), array('malo',0))
@@ -71,4 +76,11 @@ class EvaluationWallBusiness extends EvaluationWallData {
 		 }
 		 return $cont;
 	}//Fin de la funcion que cuenta el numero de apariciones de una palabraa
+
+
+	public function sendRecommendtionClient(){
+		
+		$instClient = new EvaluationWallClientData();
+		$instClient->getMaxIndex();
+	}
 }
