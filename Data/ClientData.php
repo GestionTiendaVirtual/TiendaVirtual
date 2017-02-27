@@ -22,7 +22,9 @@ class ClientData extends Data
         	$client->userClient ."','". $client->passwordClient ."','".	$client->nameClient ."','".
         	$client->surname1Client ."','".	$client->surname2Client ."','". 
         	date_format($client->bornClient, "Y-m-d") ."','". $client->sexClient . "','".
+
             $client->telephoneClient . "','". $client->addressClient ."',1,0)";
+
         
         $result = mysqli_query($conn, $query);
         mysqli_close($conn);
@@ -127,11 +129,11 @@ class ClientData extends Data
         return $row['addressclient'];
     }//Fin de la funcion
 
-    public function setPointsClient($idClient, $points){
+    public function setPointsClientData($idClient, $points){
         $conn = new mysqli($this->server, $this->user, $this->password, $this->db);
         $conn->set_charset('utf8');
 
-        $query = "update tbclient set points = ".$points." where idclient = ".$idClient;
+        $query = "update tbclient set points = (points + ".$points.") where idclient = ".$idClient;
         $result = mysqli_query($conn, $query);
         mysqli_close($conn);
         

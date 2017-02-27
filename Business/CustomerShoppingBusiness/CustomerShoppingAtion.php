@@ -38,7 +38,7 @@ if (isset($_POST['create'])) {
             $myAccount = $accountBusiness->getAccountByIdBusiness($_POST['account'])[0];
 
             /* Se obtiene el cliente */
-            $instClient = new clientBusiness();
+            $instClient = new ClientBusiness();
             $client = $instClient->getClientByIdBusiness($idClient);
 
             /* Datos a pasar */
