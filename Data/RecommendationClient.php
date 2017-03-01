@@ -19,7 +19,7 @@ class RecommendationClient extends Data {
 	    while($row = mysqli_fetch_array($result)){
 
 	        $idClient = $row['idclient'];
-	        $query = "select max(indexproduct), criterion, metrics  from tbevaluationwallclient where idclient =" .$idClient ;
+	        $query = "select max(indexproduct), criterion, metrics  from tbevaluationwallclient where idclient =" .$idClient . " and indexproduct = (select max(indexproduct) from tbevalutionwallclient where idclient = ".$idClient.")";
 	    
 	        $resultClient = mysqli_query($conn, $query);
 	        $rowR = mysqli_fetch_array($resultClient);
@@ -44,9 +44,9 @@ class RecommendationClient extends Data {
 	        
 
 	        $idEvaluation = $row['idevaluation'];
-	        //$query = "delete from tbevaluationwallclient where idevaluation = " .$idEvaluation;
+	        $query = "update tbevaluationwallclient set indexproduct = 0 where idevaluation = " .$idEvaluation;
 	    
-	        //mysqli_query($conn, $query);
+	        mysqli_query($conn, $query);
 
 
 	    }
@@ -67,8 +67,6 @@ class RecommendationClient extends Data {
 	    mysqli_close($conn);
 	    $mail = new PHPMailer();
 	    $mail->isSMTP();
-	        $mail->SMTPDebug = 2;
-            $mail->Debugoutput = 'html';
 	    $mail->Host = 'smtp.gmail.com';
 	    $mail->Port = 587;
 	    $mail->SMTPSecure = 'tls';
