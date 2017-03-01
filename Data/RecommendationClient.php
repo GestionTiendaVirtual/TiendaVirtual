@@ -84,5 +84,4 @@ class RecommendationClient extends Data {
 	    	return false;
 	    }
 	}
-
 }
