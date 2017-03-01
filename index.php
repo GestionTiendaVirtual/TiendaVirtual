@@ -15,17 +15,14 @@
         <a href="./Presentation/Location/DirectionClient.php">Direcciones</a>
         <a href="./Presentation/TypeProduct/typeProductInterface.php">Tipo producto</a>
         <a href="./Presentation/Product/ProductCreate.php">Producto</a>
-<<<<<<< HEAD
+
         <?php 
         include_once './Business/EmailBusiness/DailyEmail.php';
             $email=new DailyEmail();
             //$email->loadProductBusiness();
             $email->sendEmailBusi();
         ?>
-=======
-       
->>>>>>> c51d26c39b979b767be73b7177ca00c244e1cdcb
-        
+
         <hr>
         <h1>Iniciar sesión</h1>
         <?php 
