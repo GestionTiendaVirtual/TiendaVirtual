@@ -19,7 +19,7 @@ class RecommendationClient extends Data {
 	    while($row = mysqli_fetch_array($result)){
 
 	        $idClient = $row['idclient'];
-	        $query = "select max(indexproduct), criterion, metrics  from tbevaluationwallclient where idclient =" .$idClient . " and indexproduct = (select max(indexproduct) from tbevalutionwallclient where idclient = ".$idClient.")";
+	        $query = "select indexproduct, criterion, metrics  from tbevaluationwallclient where idclient = ".$idClient." and indexproduct =(select max(indexproduct) from tbevaluationwallclient where idclient = ".$idClient.");";
 	    
 	        $resultClient = mysqli_query($conn, $query);
 	        $rowR = mysqli_fetch_array($resultClient);
