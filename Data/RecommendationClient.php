@@ -74,8 +74,7 @@ class RecommendationClient extends Data {
 	    $mail->Username = "mgasoluciones17@gmail.com";
 	    $mail->Password = "adminMGA";
 	    $mail->setFrom('mgasoluciones17@gmail.com', 'MGA Store');
-	    //$mail->addAddress($email, $name);
-	    $mail->addAddress("tavinchi.com@gmail.com", $name);
+	    $mail->addAddress($email, $name);
 	    $mail->Subject = 'Recomendacion producto';
 	    $mail->msgHTML($messageSend);
 	    $success = $mail->send();
