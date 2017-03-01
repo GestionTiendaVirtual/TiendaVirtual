@@ -44,9 +44,9 @@ class RecommendationClient extends Data {
 	        
 
 	        $idEvaluation = $row['idevaluation'];
-	        $query = "delete from tbevaluationwallclient where idevaluation = " .$idEvaluation;
+	        //$query = "delete from tbevaluationwallclient where idevaluation = " .$idEvaluation;
 	    
-	        mysqli_query($conn, $query);
+	        //mysqli_query($conn, $query);
 
 
 	    }
@@ -67,6 +67,8 @@ class RecommendationClient extends Data {
 	    mysqli_close($conn);
 	    $mail = new PHPMailer();
 	    $mail->isSMTP();
+	        $mail->SMTPDebug = 2;
+            $mail->Debugoutput = 'html';
 	    $mail->Host = 'smtp.gmail.com';
 	    $mail->Port = 587;
 	    $mail->SMTPSecure = 'tls';
@@ -74,7 +76,8 @@ class RecommendationClient extends Data {
 	    $mail->Username = "mgasoluciones17@gmail.com";
 	    $mail->Password = "adminMGA";
 	    $mail->setFrom('mgasoluciones17@gmail.com', 'MGA Store');
-	    $mail->addAddress($email, $name);
+	    //$mail->addAddress($email, $name);
+	    $mail->addAddress("tavinchi.com@gmail.com", $name);
 	    $mail->Subject = 'Recomendacion producto';
 	    $mail->msgHTML($messageSend);
 	    $success = $mail->send();

@@ -17,7 +17,7 @@ class Data {
     public function Data(){        
         $this->server = "localhost";
         $this->user = "root";
-        $this->password = "";
+        $this->password = "admin123";
         //$this->password = "admin123";
         $this->db = "mgasoluciones";
     }

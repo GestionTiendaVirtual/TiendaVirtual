@@ -15,11 +15,7 @@
         <a href="./Presentation/Location/DirectionClient.php">Direcciones</a>
         <a href="./Presentation/TypeProduct/typeProductInterface.php">Tipo producto</a>
         <a href="./Presentation/Product/ProductCreate.php">Producto</a>
-        <?php 
-        include_once './Business/EmailBusiness/DailyEmail.php';
-            $email=new DailyEmail();
-            $email->sendEmailBusi();
-        ?>
+       
         
         <hr>
         <h1>Iniciar sesión</h1>
