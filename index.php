@@ -18,6 +18,7 @@
         <?php 
         include_once './Business/EmailBusiness/DailyEmail.php';
             $email=new DailyEmail();
+            //$email->loadProductBusiness();
             $email->sendEmailBusi();
         ?>
         
